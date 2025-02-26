@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-require 'google/cloud/translate'
+require "google/cloud/translate/v2"
 
 # Translation Class
 class Translation
   def initialize
-    @client = Google::Cloud::Translate::V2.new project: 'projects/trans-jpn-lao-bot'
+    @client = Google::Cloud::Translate::V2.new
   end
 
   def detect_language(text)
