@@ -3,13 +3,10 @@
 require 'functions_framework'
 require 'line/bot'
 require 'sinatra'
-require 'dotenv'
 require 'pry-byebug'
 
 require './translation.rb'
 require './reply_message.rb'
-
-Dotenv.load
 
 $first_language = 'ja'
 $second_language = 'th'
@@ -24,7 +21,6 @@ class App < Sinatra::Base
   end
 
   post '/line-callback' do
-    # binding.pry
     action = ReplyMessage.new(request)
     unless action.validate_signature?
       error 400 do
