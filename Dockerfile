@@ -1,4 +1,4 @@
-FROM ruby:3.0.5-bullseye
+FROM ruby:3.3-bullseye
 
 WORKDIR /app
 ENV TZ=Asia/Tokyo

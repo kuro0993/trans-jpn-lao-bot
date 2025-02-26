@@ -13,3 +13,9 @@ flowchart TD
     cRun --push message--> bot
 
 ``` 
+
+# デプロイ
+
+```
+./deploy.sh
+```

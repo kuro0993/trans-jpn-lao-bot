@@ -21,3 +21,4 @@ Dockerfile
 docker-compose.yml
 .solargraph.yml
 service-account.json
+.env*
