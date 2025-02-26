@@ -34,14 +34,24 @@ class App < Sinatra::Base
     action.call
   end
 
+  # for test
   get '/translate' do
     text = params['text']
     translation = Translation.new
-    detect_lang_code = translation.detect_language(text)
-    target_lang_code = detect_lang_code == $first_language ? $second_language : $first_language
-    translated_text = translation.trans(text, target_lang_code)
-    re_translated_text = translation.trans(translated_text, detect_lang_code)
+    translated_text = translation.translate(text, from: source_language(text), to: destination_language(text))
+    re_translated_text = translation.trans(translated_text, from: destination_language(text), to: source_language(text))
     "#{translated_text} | #{re_translated_text}"
+  end
+
+  private
+
+  def source_language(text)
+    translation = Translation.new
+    @source_language ||= translation.detect_language(text)
+  end
+
+  def destination_language(text)
+    source_language(text) == $first_language ? $second_language : $first_language
   end
 end
 
